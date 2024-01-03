@@ -31,7 +31,7 @@ move_and_sendmail () {
 				elif [[ "$2" == "startearly" ]]; then
 					declare -a tables=("ClassAttendance" "IndividualAttendance" "ChildInformation" "StaffInformation" "AgencyInformation")
 				elif [[ "$2" == "CPS" ]]; then
-					declare -a tables=("proto_applic_cecids" "proto_attend_cecids" "proto_programs_cecids" "proto_enrolls_cecids" "proto_students_cecids" "proto_teacher_cecids" "proto_roster_cecids" "proto_classroom_cecids")
+					declare -a tables=("proto_apps_cecids" "proto_sites_cecids" "proto_applic_cecids" "proto_attend_cecids" "proto_programs_cecids" "proto_enrolls_cecids" "proto_students_cecids" "proto_teacher_cecids" "proto_roster_cecids" "proto_classroom_cecids")
 				fi
 
 				for table in "${tables[@]}"
@@ -40,10 +40,14 @@ move_and_sendmail () {
 				done
 
 				# Copy to storage
-				cp /home/$1/Inbound/* /home/saiirccecids/Data/$2/Archive/
+				if [[ "$2" == "chicago-commons" ]]; then
+				   cp -r /home/$1/Inbound/chicagocommons/* /home/saiirccecids/Data/$2/Archive/
+				else
+				   cp /home/$1/Inbound/* /home/saiirccecids/Data/$2/Archive/
+				fi
 				echo "Copied from /home/$1/Inbound/ to /home/saiirccecids/Data/$2/Archive/" >> $3
 				# Email notification
-				python3 /home/iirc-admin/scripts/sendmail.py $1
+				# python3 /home/iirc-admin/scripts/sendmail.py $1
 
 				# Remove sftp files if exist in Archive
 				echo "Remove files:" >> $3
@@ -59,5 +63,6 @@ move_and_sendmail () {
 move_and_sendmail sftp_easter easterseals $log_file_path
 move_and_sendmail sftp_start startearly $log_file_path
 move_and_sendmail sftp_cps CPS $log_file_path
+move_and_sendmail sftp_commons chicago-commons $log_file_path
 
 echo "Complete" >> $log_file_path
