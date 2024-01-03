@@ -768,3 +768,20 @@ Strict-Transport-Security: max-age=600; includeSubDomains
 
 
 INFO:root:End sendmail for sftp_commons
+INFO:root:Starting sendmail for easter
+INFO:root:Starting sendmail for sftp_easter
+INFO:root:202
+INFO:root:Server: nginx
+Date: Wed, 03 Jan 2024 05:48:00 GMT
+Content-Length: 0
+Connection: close
+X-Message-Id: H3a3SEOVSZy6enP6B5Vb8Q
+Access-Control-Allow-Origin: https://sendgrid.api-docs.io
+Access-Control-Allow-Methods: POST
+Access-Control-Allow-Headers: Authorization, Content-Type, On-behalf-of, x-sg-elas-acl
+Access-Control-Max-Age: 600
+X-No-CORS-Reason: https://sendgrid.com/docs/Classroom/Basics/API/cors.html
+Strict-Transport-Security: max-age=600; includeSubDomains
+
+
+INFO:root:End sendmail for sftp_easter

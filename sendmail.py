@@ -20,7 +20,7 @@ with open('/home/iirc-admin/creds/sendgrid.json') as json_file:
 files = [f for f in os.listdir(file_path) if os.path.isfile(os.path.join(file_path,f))]
 send_text = json.dumps(files)
 sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
-from_email = Email('dhalladin@team3si.com')
+from_email = Email('mghanta1@niu.edu')
 to_email = [
                 ('mghanta1@niu.edu', 'Mownica Ghanta'),
                 ('dtyndorf@niu.edu', 'Darryl Tyndorf'),
